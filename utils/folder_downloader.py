@@ -2,9 +2,9 @@ import requests
 from pathlib import Path
 
 from utils.print_message import print_message
-from constants import Message
+from constants import Message, Directory
 
-def download_github_folder(folder_url, download_path=None, branch='main'):
+def download_github_folder(folder_url, download_path=Directory.DATA_DIR, branch='main'):
     """
     Downloads a specific folder from a GitHub repository given the folder URL.
     Creates a new folder in the download_path and downloads all contents into that folder.

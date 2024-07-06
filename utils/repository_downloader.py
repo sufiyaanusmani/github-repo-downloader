@@ -5,9 +5,9 @@ from pathlib import Path
 from io import BytesIO
 
 from utils.print_message import print_message
-from constants import Message
+from constants import Message, Directory
 
-def download_github_repository(repo_url, download_path=None):
+def download_github_repository(repo_url, download_path=Directory.DATA_DIR):
     """
     Downloads a GitHub repository as a zip file and extracts it.
 
