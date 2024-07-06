@@ -4,6 +4,9 @@ from zipfile import ZipFile
 from pathlib import Path
 from io import BytesIO
 
+from utils.print_message import print_message
+from constants import Message
+
 def download_github_repository(repo_url, download_path=None):
     """
     Downloads a GitHub repository as a zip file and extracts it.
@@ -31,7 +34,7 @@ def download_github_repository(repo_url, download_path=None):
 
     try:
         # Download the zip file
-        print(f'Downloading {repo_name} from {zip_url}...')
+        print_message(f'[INFO] Downloading {repo_name} from {zip_url}...', Message.INFO)
         response = requests.get(zip_url)
         response.raise_for_status()
 
@@ -39,8 +42,8 @@ def download_github_repository(repo_url, download_path=None):
         with ZipFile(BytesIO(response.content)) as zip_file:
             zip_file.extractall(download_path)
 
-        print(f'{repo_name} downloaded and extracted to {download_path}')
+        print_message(f'[SUCCESS] {repo_name} downloaded and extracted to {download_path}', Message.SUCCESS)
     except requests.exceptions.RequestException as e:
-        print(f'Error downloading the repository: {e}')
+        print_message(f'[ERROR] Error downloading the repository: {e}', Message.ERROR)
     except zipfile.BadZipFile:
-        print('The downloaded file is not a valid zip file.')
+        print_message('[ERROR] The downloaded file is not a valid zip file.', Message.ERROR)

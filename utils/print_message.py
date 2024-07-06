@@ -1,4 +1,4 @@
-from constants import Colors
+from constants import Colors, Message
 
 def print_message(message, message_type="info"):
     """
@@ -7,11 +7,11 @@ def print_message(message, message_type="info"):
     :param message: The message to print
     :param message_type: The type of the message ('error', 'warning', 'success', 'info')
     """
-    if message_type == "error":
+    if message_type == Message.ERROR:
         color = Colors.RED
-    elif message_type == "warning":
+    elif message_type == Message.WARNING:
         color = Colors.YELLOW
-    elif message_type == "success":
+    elif message_type == Message.SUCCESS:
         color = Colors.GREEN
     else:
         color = Colors.RESET
